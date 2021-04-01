@@ -1,10 +1,13 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Focus } from './src/features/focus/Focus';
 const App = () => {
+
+  const [focusSubject, setFocusSubject] = useState(null);
+
   return (
-    <View>
-      <Text style={styles.textStyle}>Hello</Text>
+    <View style={styles.container}>
+      <Focus />
     </View>
   );
 };
@@ -16,8 +19,12 @@ export default App;
 
 const styles = StyleSheet.create({
 
+  container: {
+    flex: 1,
+    backgroundColor: '#252250',
+    color: 'white',
+  },
   textStyle: {
-
-    fontSize: 45,
+    fontSize: 24,
   }
 })
