@@ -7,8 +7,10 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Focus />
+      {focusSubject ? <Text>Build timer</Text> : <Focus addSubject={setFocusSubject} />}
+      <Text>{focusSubject}</Text>
     </View>
+
   );
 };
 
