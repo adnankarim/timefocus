@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { Focus } from './src/features/focus/Focus';
+import { fontSizes } from './src/utils/sizes';
+import { colors } from './src/utils/colors';
 const App = () => {
 
   const [focusSubject, setFocusSubject] = useState(null);
@@ -24,9 +26,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#252250',
-    color: 'white',
+    color: colors.white,
   },
   textStyle: {
-    fontSize: 24,
+    fontSize: fontSizes.lg,
   }
 })
