@@ -4,7 +4,7 @@ export const spacing = {
     lg: 24,
     xl: 32,
     xxl: 40,
-    xxxxl: 80,
+    xxxl: 80,
 
 }
 
@@ -15,6 +15,6 @@ export const fontSizes = {
     lg: 24,
     xl: 32,
     xxl: 40,
-    xxxxl: 80,
+    xxxl: 80,
 
 }
