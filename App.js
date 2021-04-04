@@ -11,11 +11,10 @@ const App = () => {
   return (
     <View style={styles.container}>
       {focusSubject ? (
-        <Timer />
+        <Timer focusSubject={focusSubject} />
       ) : (
         <Focus addSubject={setFocusSubject} />
       )}
-      <Text>{focusSubject}</Text>
     </View>
   );
 };
