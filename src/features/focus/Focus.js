@@ -14,7 +14,7 @@ export const Focus = ({ addSubject }) => {
                 <Text style={styles.title}>What would you like to focus on?</Text>
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.textInput} value={tmp} onChangeText={(text) => { setTmp(text) }} />
-                    <RoundedButton title='+' size={50} style={styles.roundedButton} onSubmit={() => { addSubject(tmp); console.log(tmp) }} />
+                    <RoundedButton title='+' size={50} style={styles.roundedButton} onSubmit={() => { addSubject(tmp) }} />
                 </View>
             </View>
         </View>
