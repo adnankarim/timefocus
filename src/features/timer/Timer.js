@@ -18,7 +18,9 @@ export const Timer = ({ focusSubject }) => {
 
     }
     const changeTime = (min) => {
-        setMinutes(min)
+        setMinutes(min);
+        setprogress(1);
+        setIsStarted(false);
     }
     return (
         <View style={styles.container}>
