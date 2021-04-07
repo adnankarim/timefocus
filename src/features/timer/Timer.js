@@ -11,21 +11,23 @@ export const Timer = ({ focusSubject }) => {
     const [minutes, setMinutes] = useState(0.1);
     const [tmp, setTmp] = useState(null);
     const [isStarted, setIsStarted] = useState(false);
-    const [progress, setprogress] = useState(1);
+    const [progress, setProgress] = useState(1);
+    const [timePercent, setTimePercent] = useState(1);
 
-    const onProgress = (progress) => {
-        setprogress(progress);
-
+    const onProg = (prog) => {
+        setProgress(timePercent);
+        // console.log(prog)
     }
     const changeTime = (min) => {
         setMinutes(min);
-        setprogress(1);
-        setIsStarted(false);
+        setProgress(1);
+        setIsStarted(false)
     }
+
     return (
         <View style={styles.container}>
             <View style={styles.countDownContainer}>
-                <Countdown minutes={minutes} isPaused={!isStarted} onProgress={onProgress} />
+                <Countdown minutes={minutes} isPaused={!isStarted} onProg={setTimePercent} />
             </View>
             <View style={{ paddingTop: spacing.xxl }}>
                 <Text style={styles.title}>Focusing On:</Text>

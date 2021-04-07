@@ -5,9 +5,15 @@ import { colors } from '../utils/colors';
 
 const minutesToMillis = min => min * 1000 * 60;
 const formatTime = (time) => time < 10 ? `0${time}` : time;
-export const Countdown = ({ minutes = 20, isPaused = true, onProgress }) => {
+
+
+export const Countdown = ({ minutes = 20, isPaused = true, onProg }) => {
     const [millis, setMillis] = useState(null);
     const interval = React.useRef(null);
+    function handleProgressChange(event) {
+        // Here, we invoke the callback with the new value
+        onProg(event);
+    }
     const countDown = () => {
         setMillis((time) => {
             if (time === 0) {
@@ -15,7 +21,7 @@ export const Countdown = ({ minutes = 20, isPaused = true, onProgress }) => {
                 return time;
             }
             const timeLeft = time - 1000;
-            onProgress(timeLeft / minutesToMillis(minutes))
+            handleProgressChange(timeLeft / minutesToMillis(minutes))
             return timeLeft;
         })
     }
@@ -30,7 +36,6 @@ export const Countdown = ({ minutes = 20, isPaused = true, onProgress }) => {
         interval.current = setInterval(countDown, 1000)
         return () => (clearInterval(interval.current))
     }, [isPaused])
-
 
     const minute = Math.floor(millis / 1000 / 60) % 60;
     const seconds = Math.floor(millis / 1000) % 60
