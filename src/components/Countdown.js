@@ -10,10 +10,7 @@ const formatTime = (time) => time < 10 ? `0${time}` : time;
 export const Countdown = ({ minutes = 20, isPaused = true, onProg }) => {
     const [millis, setMillis] = useState(null);
     const interval = React.useRef(null);
-    function handleProgressChange(event) {
-        // Here, we invoke the callback with the new value
-        onProg(event);
-    }
+
     const countDown = () => {
         setMillis((time) => {
             if (time === 0) {
@@ -21,7 +18,7 @@ export const Countdown = ({ minutes = 20, isPaused = true, onProg }) => {
                 return time;
             }
             const timeLeft = time - 1000;
-            handleProgressChange(timeLeft / minutesToMillis(minutes))
+            onProg(timeLeft / minutesToMillis(minutes))
             return timeLeft;
         })
     }

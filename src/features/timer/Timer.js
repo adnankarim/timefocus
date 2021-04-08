@@ -6,16 +6,17 @@ import { colors } from '../../utils/colors';
 import { spacing, fontSizes } from '../../utils/sizes';
 import { Countdown } from '../../components/Countdown';
 import { Timing } from './Timing';
+import KeepAwake from 'react-native-keep-awake';
 
 export const Timer = ({ focusSubject }) => {
+    KeepAwake.activate();
     const [minutes, setMinutes] = useState(0.1);
     const [tmp, setTmp] = useState(null);
     const [isStarted, setIsStarted] = useState(false);
     const [progress, setProgress] = useState(1);
-    const [timePercent, setTimePercent] = useState(1);
 
     const onProg = (prog) => {
-        setProgress(timePercent);
+        setProgress(prog);
         // console.log(prog)
     }
     const changeTime = (min) => {
@@ -27,7 +28,7 @@ export const Timer = ({ focusSubject }) => {
     return (
         <View style={styles.container}>
             <View style={styles.countDownContainer}>
-                <Countdown minutes={minutes} isPaused={!isStarted} onProg={setTimePercent} />
+                <Countdown minutes={minutes} isPaused={!isStarted} onProg={(prog) => onProg(prog)} />
             </View>
             <View style={{ paddingTop: spacing.xxl }}>
                 <Text style={styles.title}>Focusing On:</Text>
