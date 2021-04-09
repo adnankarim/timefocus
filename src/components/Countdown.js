@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Vibration, Platform } from 'react-native';
 import { spacing, fontSizes } from '../utils/sizes';
 import { colors } from '../utils/colors';
 import { ProgressBar } from 'react-native-paper';
@@ -12,12 +12,21 @@ export const Countdown = ({ minutes = 20, isPaused = true, onEnd }) => {
     const [millis, setMillis] = useState(null);
     const [progress, setProgress] = useState(1);
     const interval = React.useRef(null);
-
+    const vibrate = () => {
+        if (Platform.OS === 'ios') {
+            const interval = setInterval(() => (Vibration.vibrate), 1000)
+            setTimeout(() => (clearInterval(interval)), 10000)
+        }
+        else {
+            Vibration.vibrate(10000);
+        }
+    }
     const countDown = () => {
         setMillis((time) => {
             if (time === 0) {
                 clearInterval(interval.current)
                 setProgress(1);
+                vibrate();
                 onEnd();
                 return time;
             }
@@ -26,6 +35,7 @@ export const Countdown = ({ minutes = 20, isPaused = true, onEnd }) => {
             return timeLeft;
         })
     }
+
     useEffect(() => {
         setMillis(minutesToMillis(minutes));
         setProgress(1);
