@@ -7,14 +7,18 @@ import { Countdown } from '../../components/Countdown';
 import { Timing } from './Timing';
 import KeepAwake from 'react-native-keep-awake';
 
+const DEFAULT_TIME = 0.1
 export const Timer = ({ focusSubject }) => {
     KeepAwake.activate();
-    const [minutes, setMinutes] = useState(0.1);
+    const [minutes, setMinutes] = useState(DEFAULT_TIME);
     const [tmp, setTmp] = useState(null);
     const [isStarted, setIsStarted] = useState(false);
 
 
-
+    const onEnd = () => {
+        setMinutes(DEFAULT_TIME);
+        setIsStarted(false)
+    }
     const changeTime = (min) => {
         setMinutes(min);
         setIsStarted(false)
@@ -22,7 +26,7 @@ export const Timer = ({ focusSubject }) => {
 
     return (<View style={styles.container}>
         <View style={styles.countDownContainer}>
-            <Countdown minutes={minutes} isPaused={!isStarted} />
+            <Countdown minutes={minutes} isPaused={!isStarted} onEnd={onEnd} />
         </View>
         <View style={{ paddingTop: spacing.xxl }}>
             <Text style={styles.title}>Focusing On:</Text>
