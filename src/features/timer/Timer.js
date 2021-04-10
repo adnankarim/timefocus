@@ -8,7 +8,7 @@ import { Timing } from './Timing';
 import KeepAwake from 'react-native-keep-awake';
 
 const DEFAULT_TIME = 0.1
-export const Timer = ({ focusSubject }) => {
+export const Timer = ({ focusSubject, onFocusEnd }) => {
     KeepAwake.activate();
     const [minutes, setMinutes] = useState(DEFAULT_TIME);
     const [tmp, setTmp] = useState(null);
@@ -18,6 +18,7 @@ export const Timer = ({ focusSubject }) => {
     const onEnd = () => {
         setMinutes(DEFAULT_TIME);
         setIsStarted(false)
+        onFocusEnd();
     }
     const changeTime = (min) => {
         setMinutes(min);
