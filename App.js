@@ -4,12 +4,14 @@ import { Focus } from './src/features/focus/Focus';
 import { Timer } from './src/features/timer/Timer';
 import { fontSizes, spacing } from './src/utils/sizes';
 import { colors } from './src/utils/colors';
-
+import { FocusHistory } from './src/features/focus/FocusHistory';
 const STATUSES = {
   COMPLETED: 1,
   CANCELLED: 2,
 };
-
+const onClear = () => {
+  //done
+}
 const App = () => {
   const [focusSubject, setFocusSubject] = useState(null);
   const [focusSubjectHistory, setFocusSubjectHistory] = useState([]);
@@ -32,7 +34,10 @@ const App = () => {
           }}
         />
       ) : (
-        <Focus addSubject={setFocusSubject} />
+        <>
+          <Focus addSubject={setFocusSubject} />
+          <FocusHistory focusSubjectHistory={focusSubjectHistory} onClear={onClear} />
+        </>
       )}
     </View>
   );
