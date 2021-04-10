@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { Focus } from './src/features/focus/Focus';
 import { Timer } from './src/features/timer/Timer';
@@ -7,7 +7,10 @@ import { colors } from './src/utils/colors';
 
 const App = () => {
   const [focusSubject, setFocusSubject] = useState(null);
-
+  const [focusSubjectHistory, setFocusSubjectHistory] = useState([]);
+  useEffect(() => {
+    setFocusSubjectHistory([...focusSubjectHistory, focusSubject])
+  }, [focusSubject])
   return (
     <View style={styles.container}>
       {focusSubject ? (
