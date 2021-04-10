@@ -8,7 +8,7 @@ import { Timing } from './Timing';
 import KeepAwake from 'react-native-keep-awake';
 
 const DEFAULT_TIME = 0.1
-export const Timer = ({ focusSubject, onFocusEnd }) => {
+export const Timer = ({ focusSubject, onFocusEnd, clearSubject }) => {
     KeepAwake.activate();
     const [minutes, setMinutes] = useState(DEFAULT_TIME);
     const [isStarted, setIsStarted] = useState(false);
@@ -49,6 +49,14 @@ export const Timer = ({ focusSubject, onFocusEnd }) => {
                     onSubmit={() => setIsStarted(true)}></RoundedButton>
             )}
         </View>
+        <View style={styles.clearSubject}>
+            <RoundedButton
+                title="-"
+                size={50}
+                style={styles.roundedButton}
+                onSubmit={() => clearSubject()}></RoundedButton>
+        </View>
+
     </View>
     );
 };
@@ -94,4 +102,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
+    clearSubject: {
+        paddingBottom: 25,
+        paddingLeft: 25
+    }
 });

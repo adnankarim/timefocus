@@ -30,14 +30,12 @@ export const Countdown = ({ minutes = 20, isPaused = true, onEnd }) => {
             }
             const timeLeft = time - 1000;
             setProgress(timeLeft / minutesToMillis(minutes));
+
             return timeLeft;
         });
     };
 
-    useEffect(() => {
-        setMillis(minutesToMillis(minutes));
-        setProgress(1);
-    }, [minutes]);
+
     useEffect(() => {
         if (isPaused) {
             if (interval.current) clearInterval(interval.current);
@@ -46,17 +44,24 @@ export const Countdown = ({ minutes = 20, isPaused = true, onEnd }) => {
         interval.current = setInterval(countDown, 1000);
         return () => clearInterval(interval.current);
     }, [isPaused]);
+    useEffect(() => {
+        setMillis(minutesToMillis(minutes));
+        setProgress(1);
+    }, [minutes]);
 
     const minute = Math.floor(millis / 1000 / 60) % 60;
     const seconds = Math.floor(millis / 1000) % 60;
+    const TimeFormat = () => {
+        return (<Text style={styles.text}>
+            {formatTime(minute)}:{formatTime(seconds)}
+        </Text>);
+    }
     return (
         <View>
             <View style={{ paddingTop: spacing.sm }}>
                 <ProgressBar color="#5E84E2" style={{ height: 10 }} progress={progress} />
             </View>
-            <Text style={styles.text}>
-                {formatTime(minute)}:{formatTime(seconds)}
-            </Text>
+            <TimeFormat minute={minute} seconds={seconds} />
         </View>
     );
 };
