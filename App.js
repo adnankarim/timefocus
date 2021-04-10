@@ -17,8 +17,8 @@ const App = () => {
   const [focusSubjectHistory, setFocusSubjectHistory] = useState([]);
 
   const setFocusSubjectHistoryWithState = (subject, status) => {
-    setFocusSubjectHistory([...focusSubjectHistory, { subject, status: status }]);
-    console.log(focusSubjectHistory)
+    setFocusSubjectHistory([...focusSubjectHistory, { subject: subject, status: status }]);
+
   };
 
   return (
@@ -28,9 +28,11 @@ const App = () => {
           focusSubject={focusSubject}
           onFocusEnd={() => {
             setFocusSubjectHistoryWithState(focusSubject, STATUSES.COMPLETED);
+            setFocusSubject(null)
           }}
           clearSubject={() => {
             setFocusSubjectHistoryWithState(focusSubject, STATUSES.CANCELLED);
+            setFocusSubject(null);
           }}
         />
       ) : (
