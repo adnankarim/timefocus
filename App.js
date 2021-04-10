@@ -5,13 +5,12 @@ import { Timer } from './src/features/timer/Timer';
 import { fontSizes, spacing } from './src/utils/sizes';
 import { colors } from './src/utils/colors';
 import { FocusHistory } from './src/features/focus/FocusHistory';
+import { RoundedButton } from './src/components/RoundedButton';
 const STATUSES = {
   COMPLETED: 1,
   CANCELLED: 2,
 };
-const onClear = () => {
-  //done
-}
+
 const App = () => {
   const [focusSubject, setFocusSubject] = useState(null);
   const [focusSubjectHistory, setFocusSubjectHistory] = useState([]);
@@ -20,7 +19,9 @@ const App = () => {
     setFocusSubjectHistory([...focusSubjectHistory, { subject: subject, status: status }]);
 
   };
-
+  const onClear = () => {
+    setFocusSubjectHistory([])
+  }
   return (
     <View style={styles.container}>
       {focusSubject ? (
@@ -39,11 +40,12 @@ const App = () => {
         <>
           <Focus addSubject={setFocusSubject} />
           <FocusHistory focusSubjectHistory={focusSubjectHistory} onClear={onClear} />
+
         </>
       )}
     </View>
   );
-};
+}
 
 export default App;
 
