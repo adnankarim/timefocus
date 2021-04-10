@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 import { RoundedButton } from '../../components/RoundedButton';
 import { colors } from '../../utils/colors';
-import { spacing, fontSizes } from '../../utils/sizes';
+import { spacing } from '../../utils/sizes';
 import { Countdown } from '../../components/Countdown';
 import { Timing } from './Timing';
 import KeepAwake from 'react-native-keep-awake';
@@ -11,7 +11,6 @@ const DEFAULT_TIME = 0.1
 export const Timer = ({ focusSubject, onFocusEnd }) => {
     KeepAwake.activate();
     const [minutes, setMinutes] = useState(DEFAULT_TIME);
-    const [tmp, setTmp] = useState(null);
     const [isStarted, setIsStarted] = useState(false);
 
 

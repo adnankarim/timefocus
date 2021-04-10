@@ -5,16 +5,28 @@ import { RoundedButton } from '../../components/RoundedButton';
 import { colors } from '../../utils/colors';
 import { spacing, fontSizes } from '../../utils/sizes';
 export const Focus = ({ addSubject }) => {
-
-    const [tmp, setTmp] = useState('hello');
+    const [subject, setSubject] = useState('hello');
 
     return (
         <View style={styles.container}>
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>What would you like to focus on?</Text>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.textInput} value={tmp} onChangeText={(text) => { setTmp(text) }} />
-                    <RoundedButton title='+' size={50} style={styles.roundedButton} onSubmit={() => { addSubject(tmp) }} />
+                    <TextInput
+                        style={styles.textInput}
+                        value={subject}
+                        onChangeText={text => {
+                            setSubject(text);
+                        }}
+                    />
+                    <RoundedButton
+                        title="+"
+                        size={50}
+                        style={styles.roundedButton}
+                        onSubmit={() => {
+                            addSubject(subject);
+                        }}
+                    />
                 </View>
             </View>
         </View>
@@ -39,7 +51,7 @@ const styles = StyleSheet.create({
         paddingTop: spacing.lg,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     textInput: {
         flex: 1,
@@ -47,5 +59,5 @@ const styles = StyleSheet.create({
     },
     roundedButton: {
         justifyContent: 'center',
-    }
+    },
 });
