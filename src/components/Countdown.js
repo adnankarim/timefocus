@@ -29,13 +29,15 @@ export const Countdown = ({ minutes = 20, isPaused = true, onEnd }) => {
                 return time;
             }
             const timeLeft = time - 1000;
-            setProgress(timeLeft / minutesToMillis(minutes));
 
             return timeLeft;
         });
     };
 
+    useEffect(() => {
+        setProgress(millis / minutesToMillis(minutes));
 
+    }, [millis]);
     useEffect(() => {
         if (isPaused) {
             if (interval.current) clearInterval(interval.current);
