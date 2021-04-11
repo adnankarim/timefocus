@@ -5,7 +5,7 @@ import { Timer } from './src/features/timer/Timer';
 import { fontSizes, spacing } from './src/utils/sizes';
 import { colors } from './src/utils/colors';
 import { FocusHistory } from './src/features/focus/FocusHistory';
-import { RoundedButton } from './src/components/RoundedButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const STATUSES = {
   COMPLETED: 1,
   CANCELLED: 2,
@@ -22,6 +22,30 @@ const App = () => {
   const onClear = () => {
     setFocusSubjectHistory([])
   }
+  const saveFocusHistory = async () => {
+    try {
+      await AsyncStorage.setItem('focusHistory', JSON.stringify(focusSubjectHistory))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const loadFocusHistory = async () => {
+    try {
+      const history = await AsyncStorage.getItem('focusHistory')
+      if (history !== null && JSON.parse(history).length > 0) {
+        setFocusSubjectHistory(JSON.parse(history));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    loadFocusHistory();
+  }, [])
+  useEffect(() => {
+    saveFocusHistory();
+  }, [focusSubjectHistory])
   return (
     <View style={styles.container}>
       {focusSubject ? (

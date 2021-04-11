@@ -52,5 +52,6 @@ const styles = StyleSheet.create({
     },
     roundedButton: {
         justifyContent: 'center',
+        marginBottom: 25
     },
 });
